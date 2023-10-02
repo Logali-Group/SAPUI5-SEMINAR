@@ -1,0 +1,125 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+
+    <Dialog
+            id="createEmployee"
+            title="{i18n>createEmployee}"
+            contentWidth="350px">
+
+        <content>   
+            <f:SimpleForm id="simpleForm"
+                          editable="true">
+                <f:content>
+                        <core:Title text="{i18n>employeeType}"/>
+                        <Label text="{i18n>type}" required="true" wrapping="true"/>
+                        <SegmentedButton items="{employeeType>/Type}"
+                                         class="sapUiSmallMarginBottom"
+                                         selectedKey="{view>/Type}">
+                            <items>
+                                <SegmentedButtonItem key="{employeeType>Key}" 
+                                                     text="{employeeType>Text}"/>
+                            </items>
+                        </SegmentedButton>
+
+                        <core:Title text="{i18n>employeeData}"/>
+                        <Label text="{i18n>firstName}" 
+                               required="true" 
+                               wrapping="true"/>
+                        <Input 
+                                value="{
+                                    path:'view>/FirstName',
+                                    type:'sap.ui.model.type.String',
+                                    constraints:{
+                                        minLength:3,
+                                        maxLength:40
+                                    }
+                                }"
+                                valueLiveUpdate="true"/>
+
+                        <Label text="{i18n>lastName}" 
+                                required="true" 
+                                wrapping="true"/>
+                        <Input 
+                                value="{
+                                    path:'view>/LastName',
+                                    type:'sap.ui.model.type.String',
+                                    constraints:{
+                                        minLength:3,
+                                        maxLength:40
+                                    }
+                                }"
+                                valueLiveUpdate="true"/>
+
+                        <Label text="{= ${view>/Type} === '1'? ${i18n>cif} : ${i18n>dniCif}}"
+                                required="true"
+                                wrapping="true"/>
+                        <Input 
+                                value="{
+                                    path:'view>/DNI',
+                                    type:'sap.ui.model.type.String',
+                                    constraints:{
+                                        minLength:6,
+                                        maxLength:20
+                                    }
+                                }"
+                                valueLiveUpdate="true"/>
+                        
+                        <Label text="{= ${view>/Type} === '1'? ${i18n>dailyPrice} : ${i18n>grossSalary}}" 
+                            wrapping="true"/>
+                        <Slider id="salary"
+                            class="sapUiLargeMarginBottom"
+                            enableTickmarks="true"
+                            showAdvancedTooltip="true"
+                            min="{= ${view>/Type} === '0'? ${view>/InternalMin}  :
+                                    ${view>/Type} === '1'? ${view>/AutonomusMin} : 
+                                    ${view>/Type} === '2'? ${view>/ManagerMin}   : 0
+                            }"
+                            max="{= ${view>/Type} === '0'? ${view>/InternalMax}  : 
+                                    ${view>/Type} === '1'? ${view>/AutonomusMax} : 
+                                    ${view>/Type} === '2'? ${view>/ManagerMax}   : 0
+                            }"
+                            value="{=   ${view>/Type} === '0'? ${view>/InternalDefault}  : 
+                                        ${view>/Type} === '1'? ${view>/AutonomusDefault} :
+                                        ${view>/Type} === '2'? ${view>/ManagerDefault}   : 0 
+                            }"/>
+                        <Label text="{i18n>date}" 
+                                    required="true" 
+                                    wrapping="true"/>
+                        <DatePicker 
+                                value="{
+                                    path:'view>/Date',
+                                    type:'sap.ui.model.odata.type.DateTime',
+                                    formatOptions:{
+                                        UTC: true,
+                                        pattern:'MM/dd/yyyy'
+                                    },
+                                    constraints:{
+                                        nullable: false
+                                    }
+                                }"
+                                valueFormat="MM/dd/yyyy"/>
+
+                        <core:Title text="{i18n>additionalInformation}"/>
+                        <Label text="{i18n>comments}" wrapping="true"/>
+                        <TextArea value="{view>/Comments}"/>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button text="{i18n>save}"
+                    tooltip="{i18n>save}"
+                    press="onSave"/>
+        </beginButton>
+
+        <endButton>
+            <Button text="{i18n>closeDialog}"
+                    tooltip="{i18n>closeDialog}"
+                    press="onCloseDialog"/>
+        </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>

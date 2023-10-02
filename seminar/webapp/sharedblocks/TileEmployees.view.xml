@@ -1,0 +1,14 @@
+<mvc:View
+        controllerName="seminar.controller.sharedblocks.TileEmployees"
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc">
+
+       <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+                    header="{i18n>launchpadEmployees}"
+                    press="onNavToEmployee">
+            <TileContent>
+                <ImageContent src="sap-icon://add-employee"/>
+            </TileContent>
+        </GenericTile>
+
+</mvc:View>

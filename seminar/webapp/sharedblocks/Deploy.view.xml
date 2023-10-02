@@ -1,0 +1,14 @@
+<mvc:View
+        controllerName="seminar.controller.sharedblocks.TileDeploy"
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc">
+
+       <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+                    header="{i18n>launchpadDeploy}"
+                    press="onRedirect">
+            <TileContent>
+                <ImageContent src="sap-icon://chain-link"/>
+            </TileContent>
+        </GenericTile>
+
+</mvc:View>
