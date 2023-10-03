@@ -11,7 +11,6 @@ sap.ui.define([
     return Object.extend("seminar.controller.Crud",{
 
         init: function (oController) {
-            this._oController = oController;
             oModel = oController.getModel("employees");
             oResourceBundle = oController.getModel("i18n").getResourceBundle();
         },
@@ -30,11 +29,26 @@ sap.ui.define([
                             case 'Update':  $this._update(oObject); break;
                             case 'Delete':  $this._delete(oObject); break;
                         }
-                    } else {
-                        MessageBox.warning(oResourceBundle.getText("cancel"));
-                    }
+                    } 
                 }
             });
+        },
+
+        read: function (oObject) {
+
+            let sUrl =          oObject.Url;
+
+            new Promise((resolve, reject)=>{
+                oModel.read(sUrl, {
+                    success: function () {
+                        return resolve(true);
+                    },
+                    error: function () {
+                        return reject(false);
+                    }
+                });
+            });
+
         },
 
         _create: function (oObject) {
@@ -94,7 +108,7 @@ sap.ui.define([
                     success: function (data) {
 
                         if (fnCallback) {
-                            let oPromise = fnCallback('Update',data);
+                            let oPromise = fnCallback('Update');
                             oPromise.then(function(response){
                                 response? resolve(true) : reject(false);
                             });
@@ -135,7 +149,7 @@ sap.ui.define([
                 oModel.remove(sUrl, {
                     success: function (data) {
                         if (fnCallback) {
-                            let oPromise = fnCallback('Delete', data);
+                            let oPromise = fnCallback('Delete');
                             oPromise.then(function(response){
                                 response? resolve(true) : reject(false);
                             });

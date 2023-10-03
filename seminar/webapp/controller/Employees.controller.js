@@ -60,13 +60,14 @@ sap.ui.define([
 
         _loadView: function () {
             let oData = {
+                EmployeeId:"",
                 Type: "0",
                 FirstName: "",
                 LastName: "",
                 DNI: "",
                 GrossSalary: null,
                 DailyPrice: null,
-                Date: "",
+                Date: new Date(),
                 Comments: "",
                 InternalMin: 1200.00,
                 InternalMax: 8000.00,
@@ -76,7 +77,7 @@ sap.ui.define([
                 AutonomusDefault: 400.00,
                 ManagerMin: 50000.00,
                 ManagerMax: 200000.00,
-                ManagerDefault: 70000.00,
+                ManagerDefault: 70000.00
             };
             this.setModel(new JSONModel(oData), "view");
         },
@@ -149,7 +150,9 @@ sap.ui.define([
 
         onCloseDialog: function () {
             this._loadView();
-            this.byId("createEmployee").close();
+            this.pDialog.then(function (oDialog) {
+                oDialog.close();
+            });
         },
 
         onSave: function () {
@@ -157,25 +160,42 @@ sap.ui.define([
             oValidator.validate(this.byId("createEmployee"));
 
             if (oValidator._isValid) {
+                
                 let oViewModel = this.getModel("view");
-                let oData = ModelData.create(oViewModel, this);
-                this._oCrudController.crud('Create',oData);    
+                let sEmployeeId = oViewModel.getProperty("/EmployeeId");
+
+                if (!sEmployeeId) {
+                    let oData = ModelData.update(oViewModel, this);
+                    this._oCrudController.crud('Update',oData);    
+                } else {
+                    let oData = ModelData.create(oViewModel, this);
+                    this._oCrudController.crud('Create',oData);    
+                }
+
             }
         },
 
         refresh: function (sAction) {
             let $this = this;
 
+            let oObject = {
+                Url: "/Users"
+            }
+
             return new Promise((resolve)=>{
                 switch(sAction) {
                     case 'Create': 
+                        $this._oCrudController.read(oObject);
                         $this.onCloseDialog();
                         resolve(true);
                     break;
                     case 'Update':
+                        $this._oCrudController.read(oObject);
+                        $this.onCloseDialog();
                         resolve(true);
                     break;
                     case 'Delete':
+                        $this._oCrudController.read(oObject);
                         resolve(true);
                     break;
                 }
@@ -204,25 +224,16 @@ sap.ui.define([
                 oBindingContext = this._oTable.getContextByIndex(iIndex),
                 oModel = this.getView().getModel("view");
 
-                console.log(oBindingContext.getObject());
+            oModel.setProperty("/EmployeeId", oBindingContext.getProperty("EmployeeId"));
+            oModel.setProperty("/SapId", oBindingContext.getProperty("SapId"))
+            oModel.setProperty("/Type", oBindingContext.getProperty("Type"));
+            oModel.setProperty("/FirstName",oBindingContext.getProperty("FirstName"));
+            oModel.setProperty("/LastName", oBindingContext.getProperty("LastName"));
+            oModel.setProperty("/DNI", oBindingContext.getProperty("Dni"));
+            oModel.setProperty("/Date", oBindingContext.getProperty("CreationDate"));
+            oModel.setProperty("/Comments", oBindingContext.getProperty("Comments"));
 
-            let oData = {
-                EmployeeId:     oBindingContext.getProperty("EmployeeId"),
-                Type:           oBindingContext.getProperty("Type"),
-                FirstName:      oBindingContext.getProperty("FirstName"),
-                LastName:       oBindingContext.getProperty("LastName"),
-                DNI:            oBindingContext.getProperty("Dni"),
-                SapId:          oBindingContext.getProperty("SapId"),
-                //Date:           oBindingContext.getProperty("CreationDate"),
-                Comments:       oBindingContext.getProperty("Comments")
-            };
-
-            oModel.setProperty("/Type", oData.Type);
-            oModel.setProperty("/FirstName",oData.FirstName);
-            oModel.setProperty("/LastName", oData.LastName);
-            oModel.setProperty("/DNI", oData.DNI);
-            oModel.setProperty("/Comments", oData.Comments)
-
+            oModel.refresh();
             this.onOpenDialog();
 
         }

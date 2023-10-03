@@ -88,7 +88,7 @@
                                     required="true" 
                                     wrapping="true"/>
                         <DatePicker 
-                                value="{
+                                dateValue="{
                                     path:'view>/Date',
                                     type:'sap.ui.model.odata.type.DateTime',
                                     formatOptions:{

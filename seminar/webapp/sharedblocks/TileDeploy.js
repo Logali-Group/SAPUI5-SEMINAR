@@ -3,15 +3,15 @@ sap.ui.define([
 ], function (BlockBase) {
     "use strict";
 
-    let oDeploy = BlockBase.extend("seminar.sharedblocks.Deploy", {
+    let oDeploy = BlockBase.extend("seminar.sharedblocks.TileDeploy", {
         metadata: {
             views: {
                 Collapsed: {
-                    viewName: "seminar.sharedblocks.Deploy",
+                    viewName: "seminar.sharedblocks.TileDeploy",
                     type: "XML"
                 },
                 Expanded: {
-                    viewName: "seminar.sharedblocks.Deploy",
+                    viewName: "seminar.sharedblocks.TileDeploy",
                     type: "XML"
                 }
             }

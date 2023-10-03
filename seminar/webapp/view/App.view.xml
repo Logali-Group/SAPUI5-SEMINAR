@@ -10,13 +10,6 @@
             <m:pages>
 
                 <ToolPage>
-                    <!--<header>
-                        <f:ShellBar homeIcon="icons/logoH.svg"
-                                    title="{i18n>toolPageSecondTitle}"
-                                    showCopilot="true"
-                                    copilotPressed="onNavToLaunchpad">
-                        </f:ShellBar>
-                    </header>-->
 
                     <mainContents>
                             <m:App id="mainContent"/>
