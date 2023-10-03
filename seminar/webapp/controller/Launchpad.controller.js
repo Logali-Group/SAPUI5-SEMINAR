@@ -4,10 +4,10 @@ sap.ui.define([
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (BaseController) {
         "use strict";
 
-        return Controller.extend("seminar.controller.Launchpad", {
+        return BaseController.extend("seminar.controller.Launchpad", {
             onInit: function () {
 
             }
