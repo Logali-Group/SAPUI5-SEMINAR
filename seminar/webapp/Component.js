@@ -32,12 +32,12 @@ sap.ui.define([
                 this.setModel(models.createDeviceModel(), "device");
 
                 //load Crud
-                this.oCrud = new Crud();
-                this.oCrud.init(this);
+                this._oCrud = new Crud();
+                this._oCrud.init(this);
             },
 
             oCrudController: function () {
-                return this.oCrud;
+                return this._oCrud;
             }
         });
     }

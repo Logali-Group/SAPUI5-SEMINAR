@@ -132,8 +132,8 @@ sap.ui.define([
         onOpenDialog: function () {
             let oView = this.getView();
 
-            if (!this.pDialog) {
-                this.pDialog = Fragment.load({
+            if (!this._pDialog) {
+                this._pDialog = Fragment.load({
                     id: oView.getId(),
                     name: "seminar.fragment.CreateEmployee",
                     controller: this
@@ -143,14 +143,14 @@ sap.ui.define([
                 });
             }
 
-            this.pDialog.then(function (oDialog) {
+            this._pDialog.then(function (oDialog) {
                 oDialog.open();
             });
         },
 
         onCloseDialog: function () {
             this._loadView();
-            this.pDialog.then(function (oDialog) {
+            this._pDialog.then(function (oDialog) {
                 oDialog.close();
             });
         },
@@ -233,7 +233,7 @@ sap.ui.define([
             oModel.setProperty("/Date", oBindingContext.getProperty("CreationDate"));
             oModel.setProperty("/Comments", oBindingContext.getProperty("Comments"));
 
-            oModel.refresh();
+
             this.onOpenDialog();
 
         }
