@@ -11,7 +11,7 @@ sap.ui.define([
 
         onNavToEmployee: function () {
             let oRouter = this.getRouter();
-                oRouter.navTo("createEmployee");
+                oRouter.navTo("RouteEmployee");
         }
     });
 });

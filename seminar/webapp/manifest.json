@@ -111,31 +111,17 @@
           "target": [
             "TargetLaunchpad"
           ]
-        },
-        {
-          "name": "createEmployee",
-          "pattern": "createEmployee",
-          "target": [
-            "createEmployee"
-          ]
         }
       ],
       "targets": {
-        "main": {
+        "TargetMain": {
           "viewName": "App",
           "controlId": "mainContainer",
           "controlAggregation": "pages"
         },
         "TargetLaunchpad": {
-          "parent": "main",
+          "parent": "TargetMain",
           "viewName": "Launchpad",
-          "controlId": "mainContent",
-          "controlAggregation": "pages"
-        },
-        "createEmployee": {
-          "parent": "main",
-          "viewPath": "seminar.view",
-          "viewName": "Employees",
           "controlId": "mainContent",
           "controlAggregation": "pages"
         }

@@ -1,9 +1,9 @@
 <mvc:View controllerName="seminar.controller.Launchpad"
-    xmlns:mvc="sap.ui.core.mvc" 
-    displayBlock="true"
-    xmlns="sap.m"
-    xmlns:uxap="sap.uxap"
-    xmlns:sb="seminar.sharedblocks">
+            xmlns:mvc="sap.ui.core.mvc" 
+            xmlns="sap.m"
+            xmlns:uxap="sap.uxap"
+            xmlns:sb="seminar.sharedblocks">
+
     <uxap:ObjectPageLayout>
 
         <uxap:sections>
