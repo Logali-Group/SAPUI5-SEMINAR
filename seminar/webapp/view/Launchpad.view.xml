@@ -7,7 +7,8 @@
     <uxap:ObjectPageLayout>
 
         <uxap:sections>
-                <uxap:ObjectPageSection title="{i18n>LaunchpadModuleA}">
+                <uxap:ObjectPageSection title="{i18n>LaunchpadModuleA}"
+                                    titleUppercase="false">
                     <uxap:subSections>
                         <uxap:ObjectPageSubSection>
                             <uxap:blocks>
@@ -17,7 +18,8 @@
                     </uxap:subSections>
                 </uxap:ObjectPageSection>
 
-                <uxap:ObjectPageSection title="{i18n>LaunchpadModuleB}">
+                <uxap:ObjectPageSection title="{i18n>LaunchpadModuleB}"
+                                    titleUppercase="false">
                     <uxap:subSections>
                         <uxap:ObjectPageSubSection>
                             <uxap:blocks>
