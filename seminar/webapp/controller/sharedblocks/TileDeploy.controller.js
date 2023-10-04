@@ -9,7 +9,7 @@ sap.ui.define([
         },
 
         onRedirect: function () {
-            let sRef = "https://372ef2fdtrial-dev-seminar-approuter.cfapps.us10.hana.ondemand.com";
+            let sRef = "https://bcc7b925trial-dev-seminar-approuter.cfapps.us10-001.hana.ondemand.com";
             sap.m.URLHelper.redirect(sRef, true);
         }
     });
