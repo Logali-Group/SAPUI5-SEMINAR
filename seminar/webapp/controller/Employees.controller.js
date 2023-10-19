@@ -164,7 +164,7 @@ sap.ui.define([
                 let oViewModel = this.getModel("view");
                 let sEmployeeId = oViewModel.getProperty("/EmployeeId");
 
-                if (!sEmployeeId) {
+                if (sEmployeeId) {
                     let oData = ModelData.update(oViewModel, this);
                     this._oCrudController.crud('Update',oData);    
                 } else {
