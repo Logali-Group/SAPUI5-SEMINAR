@@ -1,0 +1,23 @@
+<mvc:View controllerName="seminar.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="sap.tnt"
+    xmlns:m="sap.m"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true">
+    <m:Shell>
+        <m:App id="mainContainer">
+            <m:pages>
+
+                <ToolPage>
+
+                    <mainContents>
+                            <m:App id="mainContent"/>
+                    </mainContents>
+
+                </ToolPage>
+
+            </m:pages>
+        </m:App>
+    </m:Shell>
+</mvc:View>

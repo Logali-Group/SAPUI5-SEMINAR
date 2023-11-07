@@ -1,0 +1,16 @@
+{
+    "Type":[
+        {
+            "Key":"0",
+            "Text":"Internal"
+        },
+        {
+            "Key":"1",
+            "Text":"Self Employee"
+        },
+        {
+            "Key":"2",
+            "Text":"Manager"
+        }
+    ]
+}
